@@ -4,4 +4,12 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+  <servlet>
+    <servlet-name>Task Servlet</servlet-name>
+    <servlet-class>ru.job4j.todolist.TaskServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Task Servlet</servlet-name>
+    <url-pattern>/task</url-pattern>
+  </servlet-mapping>
 </web-app>

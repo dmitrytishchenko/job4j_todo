@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>The application TODO list</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script>
+        function showTasks() {
+            $.ajax({
+                type: 'GET',
+                url: 'http://localhost:8080/todo/task'
+            }).done(function (data) {
+                var mas = JSON.parse(data);
+                var result = "";
+                var checked = "<input type=\"checkbox\" id=\"checkbox2\" checked='checked'>";
+                var unchecked = "<input type=\"checkbox\" id=\"checkbox2\">";
+                if (!$('#checkbox').is(':checked')) {
+                    for (var j = 0; j < mas.length; j++) {
+                        if (mas[j].done === false) {
+                            result += "<tr>" +
+                                "<td>" + mas[j].id + "</td>" +
+                                "<td>" + mas[j].desc + "</td>" +
+                                "<td>" + new Date(mas[j].date) + "</td>" +
+                                "<td>" + unchecked + "</td>" +
+                                "</tr>";
+                        }
+                    }
+                } else {
+                    for (var i = 0; i < mas.length; i++) {
+                        if (mas[i].done === true) {
+                            result += "<tr>" +
+                                "<td>" + mas[i].id + "</td>" +
+                                "<td>" + mas[i].desc + "</td>" +
+                                "<td>" + new Date(mas[i].date) + "</td>" +
+                                "<td>" + checked + "</td>" +
+                                "</tr>";
+                        } else {
+                            result += "<tr>" +
+                                "<td>" + mas[i].id + "</td>" +
+                                "<td>" + mas[i].desc + "</td>" +
+                                "<td>" + new Date(mas[i].date) + "</td>" +
+                                "<td>" + unchecked + "</td>" +
+                                "</tr>";
+                        }
+                    }
+                }
+                document.getElementById("bodyTable").innerHTML = result;
+            }).fail(function (err) {
+                alert(err);
+            });
+        }
+
+        $(document).ready(function () {
+            showTasks();
+            setInterval('showTasks()', 1000);
+        });
+
+    </script>
+</head>
+<body>
+<h2>Create new task</h2>
+<form class="form-horizontal" action="task" method="post">
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="desc">Description:</label>
+        <div class="col-sm-10">
+            <input type="desc" class="form-control" id="desc" name="desc" placeholder="Enter description">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-default">Submit</button>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <div class="checkbox">
+                <label><input type="checkbox" id="checkbox"> Show all tasks!</label>
+            </div>
+        </div>
+    </div>
+</form>
+
+<div class="container">
+    <h2>TASKS</h2>
+    <table class="table table-condensed">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Description</th>
+            <th>Create</th>
+            <th>Done</th>
+        </tr>
+        </thead>
+        <tbody id="bodyTable">
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
