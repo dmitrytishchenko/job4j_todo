@@ -1,4 +1,4 @@
-package ru.job4j.todolist;
+package ru.job4j.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.hibernate.Session;
@@ -7,6 +7,9 @@ import org.hibernate.Transaction;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import ru.job4j.model.Task;
+import ru.job4j.repository.DBStore;
+import ru.job4j.repository.Store;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -14,22 +17,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-import java.util.function.Function;
 
 public class TaskServlet extends HttpServlet {
-    private final StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
-    private SessionFactory sf = new MetadataSources(registry).buildMetadata().buildSessionFactory();
-
+private final Store store = DBStore.getInst();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/plain");
         resp.setCharacterEncoding("UTF-8");
-        List result = this.tx(session -> session.createQuery("from ru.job4j.todolist.Task").list());
         ObjectMapper mapper = new ObjectMapper();
-        String json = mapper.writeValueAsString(result);
+        String json = mapper.writeValueAsString(store.getAllTasks());
         PrintWriter writer = new PrintWriter(resp.getOutputStream());
         writer.write(json);
         writer.flush();
@@ -39,22 +36,9 @@ public class TaskServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String desc = req.getParameter("desc");
         Task task = new Task(desc, new Date(), false);
-        this.tx(session -> session.save(task));
+        store.save(task);
         resp.sendRedirect("/todo/index.html");
     }
 
-    private <T> T tx(final Function<Session, T> command) {
-        final Session session = sf.openSession();
-        final Transaction tx = session.beginTransaction();
-        try {
-            T rsl = command.apply(session);
-            tx.commit();
-            return rsl;
-        } catch (final Exception e) {
-            session.getTransaction().rollback();
-            throw e;
-        } finally {
-            session.close();
-        }
-    }
+
 }
