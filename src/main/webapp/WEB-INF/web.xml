@@ -1,15 +1,47 @@
 <!DOCTYPE web-app PUBLIC
- "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
- "http://java.sun.com/dtd/web-app_2_3.dtd" >
+        "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+        "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
-  <display-name>Archetype Created Web Application</display-name>
-  <servlet>
-    <servlet-name>Task Servlet</servlet-name>
-    <servlet-class>ru.job4j.service.TaskServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>Task Servlet</servlet-name>
-    <url-pattern>/task</url-pattern>
-  </servlet-mapping>
+    <display-name>Archetype Created Web Application</display-name>
+    <!--<filter>-->
+        <!--<filter-name>Auth Filter</filter-name>-->
+        <!--<filter-class>ru.job4j.service.AuthFilter</filter-class>-->
+    <!--</filter>-->
+    <!--<filter-mapping>-->
+        <!--<filter-name>Auth Filter</filter-name>-->
+        <!--<url-pattern>*</url-pattern>-->
+    <!--</filter-mapping>-->
+    <servlet>
+        <servlet-name>Task Servlet</servlet-name>
+        <servlet-class>ru.job4j.service.TaskServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Auth Servlet</servlet-name>
+        <servlet-class>ru.job4j.service.AuthServlet</servlet-class>
+    </servlet>
+<servlet>
+    <servlet-name>Reg Servlet</servlet-name>
+    <servlet-class>ru.job4j.service.RegServlet</servlet-class>
+</servlet>
+    <servlet>
+        <servlet-name>Users Servlet</servlet-name>
+        <servlet-class>ru.job4j.service.UsersServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Users Servlet</servlet-name>
+        <url-pattern>/users</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Reg Servlet</servlet-name>
+        <url-pattern>/reg</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Task Servlet</servlet-name>
+        <url-pattern>/task</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Auth Servlet</servlet-name>
+        <url-pattern>/auth</url-pattern>
+    </servlet-mapping>
 </web-app>

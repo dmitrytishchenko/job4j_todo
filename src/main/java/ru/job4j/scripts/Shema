@@ -1,0 +1,7 @@
+create table users (
+                     id serial primary key,
+                     name varchar(100),
+                     password varchar(100),
+                     unique (name),
+                     task_id int not null references tasks(id)
+);
