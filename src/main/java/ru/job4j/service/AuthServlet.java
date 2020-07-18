@@ -1,6 +1,5 @@
 package ru.job4j.service;
 
-
 import ru.job4j.model.User;
 import ru.job4j.repository.DBStore;
 
@@ -21,16 +20,14 @@ public class AuthServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String name = req.getParameter("name");
         String password = req.getParameter("password");
-        if (name.equals("admin") && password.equals("admin")) {
-            HttpSession sc = req.getSession();
-            User user = DBStore.getInst().checkNameAndPasswordByUser(name, password);
-            if (user != null) {
-                sc.setAttribute("user", user);
-                req.getRequestDispatcher("index.html").forward(req, resp);
-            } else {
-                req.setAttribute("error", "Не верный пароль");
-                doGet(req, resp);
-            }
+        HttpSession sc = req.getSession();
+        User user = DBStore.getInst().checkNameAndPasswordByUser(name, password);
+        if (user != null) {
+            sc.setAttribute("user", user);
+            req.getRequestDispatcher("index.html").forward(req, resp);
+        } else {
+            req.setAttribute("error", "Не верный пароль");
+            doGet(req, resp);
         }
     }
 }

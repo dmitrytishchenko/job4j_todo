@@ -13,7 +13,7 @@ import java.util.Date;
 public class RegServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher(req.getContextPath() + "index.html").forward(req, resp);
+        req.getRequestDispatcher("login.html").forward(req, resp);
     }
 
     @Override
@@ -25,8 +25,8 @@ public class RegServlet extends HttpServlet {
         String done = req.getParameter("done");
         Task task;
         if (done.equals("true")) {
-           task = new Task(desc, new Date(), true);
-           DBStore.getInst().saveTask(task);
+            task = new Task(desc, new Date(), true);
+            DBStore.getInst().saveTask(task);
         } else {
             task = new Task(desc, new Date(), false);
         }

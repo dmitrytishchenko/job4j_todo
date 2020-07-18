@@ -11,7 +11,7 @@
         function getUsers() {
             $.ajax({
                 type: 'GET',
-                url: 'http://localhost:8080/job4j_todo/users'
+                url: '././users'
             }).done(function (data) {
                 var mas = JSON.parse(data);
                 var result = "";
@@ -55,17 +55,15 @@
                 alert(err);
             });
         }
-
         $(document).ready(function () {
             getUsers();
         });
-
     </script>
-    <script>
-        function reload() {
-            location.reload();
-        }
-    </script>
+<script>
+    function changeCheckbox() {
+        getUsers();
+    }
+</script>
 </head>
 <body>
 
@@ -86,7 +84,7 @@
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
             <div class="checkbox">
-                <label><input type="checkbox" id="checkbox" onclick="reload()"> Show all tasks!</label>
+                <label><input type="checkbox" id="checkbox" onchange="changeCheckbox()"> Show all tasks!</label>
             </div>
         </div>
     </div>
@@ -108,6 +106,6 @@
         </tbody>
     </table>
 </div>
-<a href="output.html">Output</a>
+<a href="././output.html">Output</a>
 </body>
 </html>

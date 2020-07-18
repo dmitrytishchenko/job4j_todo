@@ -19,7 +19,11 @@ public class AuthFilter implements Filter {
             chain.doFilter(request, response);
             return;
         }
-        if (req.getSession().getAttribute("admin") == null) {
+        if (uri.contains("registration.html")) {
+            chain.doFilter(request, response);
+            return;
+        }
+        if (req.getSession().getAttribute("user") == null) {
             resp.sendRedirect(req.getContextPath() + "/login.html");
             return;
         }
