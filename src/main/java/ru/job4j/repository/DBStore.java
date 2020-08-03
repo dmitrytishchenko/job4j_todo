@@ -29,15 +29,12 @@ public class DBStore implements Store {
     }
 
     private void checkAdmin() {
-        for (User us : getAllUsers(User.class)) {
-            if (us.getName().equals("admin")) {
-                return;
-            }
-        }
-        Task task = create(new Task());
         Task adminTask = new Task();
-        adminTask.setId(task.getId());
-        User user = new User().of("admin", "admin", adminTask);
+        saveTask(adminTask);
+        User user = new User();
+        user.setName("admin");
+        user.setPassword("1");
+        user.setTask(adminTask);
         this.tx(session -> session.save(user));
     }
 

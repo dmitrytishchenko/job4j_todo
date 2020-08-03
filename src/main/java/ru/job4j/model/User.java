@@ -7,13 +7,16 @@ import java.util.Objects;
 @Table(name = "users")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String name;
     private String password;
     @ManyToOne
     @JoinColumn(name = "task_id")
     private Task task;
+
+    public User() {
+    }
 
     public User of(String name, String password, Task task) {
         User user = new User();
