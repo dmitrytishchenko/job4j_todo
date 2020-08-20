@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <style type="text/css">
+        body {
+            background-color: aliceblue;
+            margin-left: 5%;
+            margin-right: 5%;
+            padding: 20px 20px 20px 20px;
+        }
+    </style>
     <meta charset="UTF-8">
     <title>The application TODO list</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,7 +19,7 @@
 </head>
 <body>
 <h2>Authorization User</h2>
-<a class="nav-link" href="././registration.html">Registration</a>
+<a class="nav-link" href="././registration.html" title="Регистрация нового пользователя">Registration</a>
 <form class="form-horizontal" action="auth" method="post">
     <div class="form-group">
         <label class="control-label col-sm-2" for="name">UserName:</label>
@@ -28,6 +36,17 @@
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
             <button type="submit" class="btn btn-default">Submit</button>
+        </div>
+    </div>
+</form>
+<form class="form-horizontal" action="auth" method="post">
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="name">Log in as a guest</label>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-default">Guest</button>
         </div>
     </div>
 </form>

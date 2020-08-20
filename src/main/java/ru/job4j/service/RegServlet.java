@@ -1,7 +1,7 @@
 package ru.job4j.service;
 
 import ru.job4j.model.Task;
-import ru.job4j.repository.DBStore;
+import ru.job4j.repository.CarsDAO;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -26,13 +26,13 @@ public class RegServlet extends HttpServlet {
         Task task;
         if (done.equals("true")) {
             task = new Task(desc, new Date(), true);
-            DBStore.getInst().saveTask(task);
+            CarsDAO.getInst().saveTask(task);
         } else {
             task = new Task(desc, new Date(), false);
         }
-        DBStore.getInst().saveTask(task);
+        CarsDAO.getInst().saveTask(task);
         if (password.equals(password1)) {
-            DBStore.getInst().addUser(name, password, task);
+            CarsDAO.getInst().addUser(name, password, task);
         }
         doGet(req, resp);
     }

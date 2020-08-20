@@ -15,11 +15,11 @@
         <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQL10Dialect</property>
         <mapping class="ru.job4j.model.Item" />
         <mapping class="ru.job4j.model.Task" />
-        <!--<mapping class="ru.job4j.model.Annotation.Car"/>-->
-        <!--<mapping class="ru.job4j.model.Annotation.Engine"/>-->
+        <mapping class="ru.job4j.model.Annotation.Car"/>
+        <mapping class="ru.job4j.model.Annotation.Engine"/>
         <!--<mapping class="ru.job4j.model.Annotation.Driver"/>-->
         <mapping class="ru.job4j.model.User" />
-        <!--<mapping class="ru.job4j.mapping.Role" />-->
-        <!--<mapping class="ru.job4j.mapping.Customer" />-->
+        <mapping class="ru.job4j.mapping.Role" />
+        <mapping class="ru.job4j.mapping.Customer" />
     </session-factory>
 </hibernate-configuration>

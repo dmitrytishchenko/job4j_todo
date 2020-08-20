@@ -7,99 +7,76 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style type="text/css">
+        body {
+            background-color: aquamarine;
+            margin-left: 5%;
+            margin-right: 5%;
+            padding: 20px 20px 20px 20px;
+        }
+    </style>
     <script>
-        function getUsers() {
+        $(document).ready(function () {
+            getCustomer();
+            getCars();
+        })
+    </script>
+    <script>
+        function getCustomer() {
             $.ajax({
                 type: 'GET',
-                url: '././users'
+                url: '././customer'
+            }).done(function (data) {
+                var user = JSON.parse(data);
+                $('#customer').after(" " + user.role);
+            })
+        }
+    </script>
+    <script>
+        function getCars() {
+            $.ajax({
+                type: 'GET',
+                url: '././cars'
             }).done(function (data) {
                 var mas = JSON.parse(data);
                 var result = "";
-                var checked = "<input type=\"checkbox\" id=\"checkbox2\" checked='checked'>";
-                var unchecked = "<input type=\"checkbox\" id=\"checkbox2\">";
-                if (!$('#checkbox').is(':checked')) {
-                    for (var j = 0; j < mas.length; j++) {
-                        if (mas[j].task.done === false) {
-                            result += "<tr>" +
-                                "<td>" + mas[j].task.id + "</td>" +
-                                "<td>" + mas[j].task.desc + "</td>" +
-                                "<td>" + new Date(mas[j].task.date) + "</td>" +
-                                "<td>" + unchecked + "</td>" +
-                                "<td>" + mas[j].name + "</td>" +
-                                "</tr>";
-                        }
-                    }
-                } else {
-                    for (var i = 0; i < mas.length; i++) {
-                        if (mas[i].task.done === true) {
-                            result += "<tr>" +
-                                "<td>" + mas[i].task.id + "</td>" +
-                                "<td>" + mas[i].task.desc + "</td>" +
-                                "<td>" + new Date(mas[i].task.date) + "</td>" +
-                                "<td>" + checked + "</td>" +
-                                "<td>" + mas[i].name + "</td>" +
-                                "</tr>";
-                        } else {
-                            result += "<tr>" +
-                                "<td>" + mas[i].task.id + "</td>" +
-                                "<td>" + mas[i].task.desc + "</td>" +
-                                "<td>" + new Date(mas[i].task.date) + "</td>" +
-                                "<td>" + unchecked + "</td>" +
-                                "<td>" + mas[i].name + "</td>" +
-                                "</tr>";
-                        }
-                    }
+                for (var i = 0; i < mas.length; i++) {
+                    result += "<tr>" +
+                        "<td>" + mas[i].id + "</td>" +
+                        "<td>" + mas[i].brand + "</td>" +
+                        "<td>" + mas[i].model + "</td>" +
+                        "<td>" + mas[i].year + "</td>" +
+                        "<td>" + mas[i].engine.type + "</td>" +
+                        "<td><img src=\"\download?name=" + mas[i].photoName + "\" width='50' height='50'/></td>" +
+                        "<td>" + mas[i].actual + "</td>" +
+                        "<td>" + mas[i].user.role + "</td>" +
+                        "<td><a class=\"nav-link\" href=\"././edit?id=" + mas[i].id + "\" title=\"Edit ad for the sale of cars\">Edit ad</a></td>" +
+                        "</tr>";
                 }
                 document.getElementById("bodyTable").innerHTML = result;
-            }).fail(function (err) {
-                alert(err);
-            });
+
+            })
         }
-        $(document).ready(function () {
-            getUsers();
-        });
     </script>
-<script>
-    function changeCheckbox() {
-        getUsers();
-    }
-</script>
 </head>
 <body>
 
-<h2>Create new task</h2>
-<form class="form-horizontal" action="/task" method="post">
-    <div class="form-group">
-        <label class="control-label col-sm-2" for="desc">Description:</label>
-        <div class="col-sm-10">
-            <input type="desc" class="form-control" id="desc" name="desc" placeholder="Enter description">
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
-            <button type="submit" class="btn btn-default">Submit</button>
-        </div>
-    </div>
-
-    <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
-            <div class="checkbox">
-                <label><input type="checkbox" id="checkbox" onchange="changeCheckbox()"> Show all tasks!</label>
-            </div>
-        </div>
-    </div>
-</form>
+<a class="nav-link" href="././newcar.html" title="Add a new car">Create new car</a>
 
 <div class="container">
-    <h2>TASKS</h2>
+    <h2>CARS</h2>
     <table class="table table-condensed">
         <thead>
         <tr>
             <th>ID</th>
-            <th>Description</th>
-            <th>Create</th>
-            <th>Done</th>
-            <th>User</th>
+            <th>Brand</th>
+            <th>Model</th>
+            <th>Year</th>
+            <th>Engine</th>
+            <th>Photo</th>
+            <th>isActual</th>
+            <th>Owner</th>
+            <th>Change</th>
         </tr>
         </thead>
         <tbody id="bodyTable">
@@ -107,5 +84,8 @@
     </table>
 </div>
 <a href="././output.html">Output</a>
+<div class="form-group">
+    <label id="customer">The customer is:</label>
+</div>
 </body>
 </html>

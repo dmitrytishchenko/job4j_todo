@@ -1,15 +1,9 @@
 package ru.job4j.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.hibernate.boot.MetadataSources;
-import org.hibernate.boot.registry.StandardServiceRegistry;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import ru.job4j.model.Task;
-import ru.job4j.repository.DBStore;
-import ru.job4j.repository.Store;
+import ru.job4j.repository.CarsDAO;
+import ru.job4j.repository.CarsStore;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -20,7 +14,7 @@ import java.io.PrintWriter;
 import java.util.Date;
 
 public class TaskServlet extends HttpServlet {
-private final Store store = DBStore.getInst();
+private final CarsStore store = CarsDAO.getInst();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/plain");

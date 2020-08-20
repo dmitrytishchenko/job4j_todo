@@ -1,7 +1,5 @@
 package ru.job4j.service;
 
-import org.hibernate.Session;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;

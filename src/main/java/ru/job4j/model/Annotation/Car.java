@@ -1,24 +1,27 @@
 package ru.job4j.model.Annotation;
 
+import ru.job4j.model.User;
+
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
-@Table(name = "car")
+@Table(name = "cars")
 public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String brand;
     private String model;
+    private int year;
+    private boolean isActual;
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "engine_id", foreignKey = @ForeignKey(name = "ENGINE_ID_FK"))
     private Engine engine;
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinTable(name = "history_owner", joinColumns = {
-            @JoinColumn(name = "driver_id", nullable = false, updatable = false)},
-            inverseJoinColumns = {@JoinColumn(name = "car_id", nullable = false, updatable = false)})
-    private Set<Driver> drivers;
+    private String photoName;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "USER_ID_FK"))
+    private User user;
+
 
     public Car() {
     }
@@ -55,12 +58,35 @@ public class Car {
         this.engine = engine;
     }
 
-    public Set<Driver> getDrivers() {
-        return drivers;
+    public int getYear() {
+        return year;
     }
 
-    public void setDrivers(Set<Driver> drivers) {
-        this.drivers = drivers;
+    public void setYear(int year) {
+        this.year = year;
     }
 
+    public boolean isActual() {
+        return isActual;
+    }
+
+    public void setActual(boolean actual) {
+        isActual = actual;
+    }
+
+    public String getPhotoName() {
+        return photoName;
+    }
+
+    public void setPhotoName(String photoName) {
+        this.photoName = photoName;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }

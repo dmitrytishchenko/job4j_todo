@@ -11,6 +11,7 @@ public class User {
     private int id;
     private String name;
     private String password;
+    private Role role;
     @ManyToOne
     @JoinColumn(name = "task_id")
     private Task task;
@@ -58,29 +59,15 @@ public class User {
         this.task = task;
     }
 
-    @Override
-    public String toString() {
-        return "Customer{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", password='" + password + '\'' +
-                ", task=" + task +
-                '}';
+    public Role getRole() {
+        return role;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return id == user.id &&
-                Objects.equals(name, user.name) &&
-                Objects.equals(password, user.password) &&
-                Objects.equals(task, user.task);
+    public void setRole(Role role) {
+        this.role = role;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, password, task);
+    public enum Role {
+        customer, admin, guest;
     }
 }

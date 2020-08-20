@@ -6,7 +6,10 @@ import org.hibernate.Transaction;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import ru.job4j.model.Task;
+import ru.job4j.model.User;
 
+import java.util.List;
 import java.util.function.Function;
 
 public class HibernateUtil {

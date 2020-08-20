@@ -1,7 +1,7 @@
 package ru.job4j.service;
 
 import ru.job4j.model.User;
-import ru.job4j.repository.DBStore;
+import ru.job4j.repository.CarsDAO;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -21,10 +21,22 @@ public class AuthServlet extends HttpServlet {
         String name = req.getParameter("name");
         String password = req.getParameter("password");
         HttpSession sc = req.getSession();
-        User user = DBStore.getInst().checkNameAndPasswordByUser(name, password);
-        if (user != null) {
+        if (name == null && password == null) {
+            User user = new User();
+            user.setRole(User.Role.guest);
             sc.setAttribute("user", user);
-            req.getRequestDispatcher("index.html").forward(req, resp);
+            resp.sendRedirect(req.getContextPath() + "/index.html");
+            return;
+        }
+        User user = CarsDAO.getInst().checkNameAndPasswordByUser(name, password);
+        if (user != null) {
+            if (user.getName().equals("admin")) {
+                user.setRole(User.Role.admin);
+            } else {
+                user.setRole(User.Role.customer);
+            }
+            sc.setAttribute("user", user);
+            resp.sendRedirect(req.getContextPath() + "/index.html");
         } else {
             req.setAttribute("error", "Не верный пароль");
             doGet(req, resp);
