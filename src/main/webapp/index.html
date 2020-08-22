@@ -19,6 +19,7 @@
         $(document).ready(function () {
             getCustomer();
             getCars();
+            getDate();
         })
     </script>
     <script>
@@ -29,6 +30,17 @@
             }).done(function (data) {
                 var user = JSON.parse(data);
                 $('#customer').after(" " + user.role);
+            })
+        }
+    </script>
+    <script>
+        function getDate() {
+            $.ajax({
+                type: 'GET',
+                url: '././date'
+            }).done(function (data) {
+                var date = JSON.parse(data);
+                $('#today').after(" " + date);
             })
         }
     </script>
@@ -60,9 +72,7 @@
     </script>
 </head>
 <body>
-
 <a class="nav-link" href="././newcar.html" title="Add a new car">Create new car</a>
-
 <div class="container">
     <h2>CARS</h2>
     <table class="table table-condensed">
@@ -86,6 +96,9 @@
 <a href="././output.html">Output</a>
 <div class="form-group">
     <label id="customer">The customer is:</label>
+</div>
+<div class="form-group">
+    <label id="today">Today is:</label>
 </div>
 </body>
 </html>

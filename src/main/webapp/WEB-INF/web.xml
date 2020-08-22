@@ -89,4 +89,12 @@
         <servlet-name>Edit Servlet</servlet-name>
         <url-pattern>/edit</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>Get date Servlet</servlet-name>
+        <servlet-class>ru.job4j.service.DateServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Get date Servlet</servlet-name>
+        <url-pattern>/date</url-pattern>
+    </servlet-mapping>
 </web-app>
