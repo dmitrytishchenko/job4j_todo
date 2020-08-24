@@ -20,6 +20,10 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class CarsServlet extends HttpServlet {
@@ -76,7 +80,13 @@ public class CarsServlet extends HttpServlet {
         Car car = new Car();
         car.setBrand(fields.get("brand"));
         car.setModel(fields.get("model"));
-        car.setYear(Integer.parseInt(fields.get("year")));
+        String date = fields.get("date");
+        SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+        try {
+            car.setDate(format.parse(date));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         if (fields.get("actual") != null) {
             car.setActual(true);
         } else {

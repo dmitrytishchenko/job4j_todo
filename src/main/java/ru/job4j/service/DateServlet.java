@@ -17,7 +17,7 @@ public class DateServlet extends HttpServlet {
         resp.setContentType("text/plain");
         resp.setCharacterEncoding("UTF-8");
         ObjectMapper mapper = new ObjectMapper();
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
         Date date = new Date();
         String json = mapper.writeValueAsString(format.format(date));
         PrintWriter writer = new PrintWriter(resp.getOutputStream());

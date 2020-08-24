@@ -3,6 +3,8 @@ package ru.job4j.model.Annotation;
 import ru.job4j.model.User;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
 @Table(name = "cars")
@@ -12,7 +14,8 @@ public class Car {
     private int id;
     private String brand;
     private String model;
-    private int year;
+    @Temporal(TemporalType.DATE)
+    private Date date;
     private boolean isActual;
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "engine_id", foreignKey = @ForeignKey(name = "ENGINE_ID_FK"))
@@ -21,7 +24,6 @@ public class Car {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "USER_ID_FK"))
     private User user;
-
 
     public Car() {
     }
@@ -58,14 +60,6 @@ public class Car {
         this.engine = engine;
     }
 
-    public int getYear() {
-        return year;
-    }
-
-    public void setYear(int year) {
-        this.year = year;
-    }
-
     public boolean isActual() {
         return isActual;
     }
@@ -89,4 +83,13 @@ public class Car {
     public void setUser(User user) {
         this.user = user;
     }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
 }

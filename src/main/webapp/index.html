@@ -53,11 +53,12 @@
                 var mas = JSON.parse(data);
                 var result = "";
                 for (var i = 0; i < mas.length; i++) {
+                    let date = new Date(mas[i].date);
                     result += "<tr>" +
                         "<td>" + mas[i].id + "</td>" +
                         "<td>" + mas[i].brand + "</td>" +
                         "<td>" + mas[i].model + "</td>" +
-                        "<td>" + mas[i].year + "</td>" +
+                        "<td>" + date + "</td>" +
                         "<td>" + mas[i].engine.type + "</td>" +
                         "<td><img src=\"\download?name=" + mas[i].photoName + "\" width='50' height='50'/></td>" +
                         "<td>" + mas[i].actual + "</td>" +
@@ -81,7 +82,7 @@
             <th>ID</th>
             <th>Brand</th>
             <th>Model</th>
-            <th>Year</th>
+            <th>Date</th>
             <th>Engine</th>
             <th>Photo</th>
             <th>isActual</th>
