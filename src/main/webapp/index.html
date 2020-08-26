@@ -18,8 +18,9 @@
     <script>
         $(document).ready(function () {
             getCustomer();
-            getCars();
+            showCars();
             getDate();
+            getBrand();
         })
     </script>
     <script>
@@ -54,6 +55,7 @@
                 var result = "";
                 for (var i = 0; i < mas.length; i++) {
                     let date = new Date(mas[i].date);
+                    let dateAdded = new Date(mas[i].dayAdded);
                     result += "<tr>" +
                         "<td>" + mas[i].id + "</td>" +
                         "<td>" + mas[i].brand + "</td>" +
@@ -64,6 +66,7 @@
                         "<td>" + mas[i].actual + "</td>" +
                         "<td>" + mas[i].user.role + "</td>" +
                         "<td><a class=\"nav-link\" href=\"././edit?id=" + mas[i].id + "\" title=\"Edit ad for the sale of cars\">Edit ad</a></td>" +
+                        "<td>" + dateAdded + "</td>" +
                         "</tr>";
                 }
                 document.getElementById("bodyTable").innerHTML = result;
@@ -71,9 +74,143 @@
             })
         }
     </script>
+    <script>
+        function getBrand() {
+            $.ajax({
+                type: 'GET',
+                url: '././cars'
+            }).done(function (data) {
+                var cars = JSON.parse(data);
+                var result = "<option>All brands</option>";
+                for (var i = 0; i < cars.length; i++) {
+                    result += "<option>" + cars[i].brand + "</option>";
+                }
+                document.getElementById("brand").innerHTML = result;
+            });
+        }
+    </script>
+    <script>
+        function getOneBrandCars() {
+            var brand = ($('#brand').val());
+            $.ajax({
+                type: 'GET',
+                url: '././brand',
+                data: {name: brand}
+            }).done(function (data) {
+                var mas = JSON.parse(data);
+                var result = "";
+                for (var i = 0; i < mas.length; i++) {
+                    let date = new Date(mas[i].date);
+                    let dateAdded = new Date(mas[i].dayAdded);
+                    result += "<tr>" +
+                        "<td>" + mas[i].id + "</td>" +
+                        "<td>" + mas[i].brand + "</td>" +
+                        "<td>" + mas[i].model + "</td>" +
+                        "<td>" + date + "</td>" +
+                        "<td>" + mas[i].engine.type + "</td>" +
+                        "<td><img src=\"\download?name=" + mas[i].photoName + "\" width='50' height='50'/></td>" +
+                        "<td>" + mas[i].actual + "</td>" +
+                        "<td>" + mas[i].user.role + "</td>" +
+                        "<td><a class=\"nav-link\" href=\"././edit?id=" + mas[i].id + "\" title=\"Edit ad for the sale of cars\">Edit ad</a></td>" +
+                        "<td>" + dateAdded + "</td>" +
+                        "</tr>";
+                }
+                document.getElementById("bodyTable").innerHTML = result;
+            })
+        }
+    </script>
+    <script>
+        function getCarsWithPhotos() {
+            $.ajax({
+                type: 'GET',
+                url: '././photo'
+            }).done(function (data) {
+                var mas = JSON.parse(data);
+                var result = "";
+                for (var i = 0; i < mas.length; i++) {
+                    let date = new Date(mas[i].date);
+                    let dateAdded = new Date(mas[i].dayAdded);
+                    result += "<tr>" +
+                        "<td>" + mas[i].id + "</td>" +
+                        "<td>" + mas[i].brand + "</td>" +
+                        "<td>" + mas[i].model + "</td>" +
+                        "<td>" + date + "</td>" +
+                        "<td>" + mas[i].engine.type + "</td>" +
+                        "<td><img src=\"\download?name=" + mas[i].photoName + "\" width='50' height='50'/></td>" +
+                        "<td>" + mas[i].actual + "</td>" +
+                        "<td>" + mas[i].user.role + "</td>" +
+                        "<td><a class=\"nav-link\" href=\"././edit?id=" + mas[i].id + "\" title=\"Edit ad for the sale of cars\">Edit ad</a></td>" +
+                        "<td>" + dateAdded + "</td>" +
+                        "</tr>";
+                }
+                document.getElementById("bodyTable").innerHTML = result;
+            })
+        }
+    </script>
+    <script>
+        function showCarsByLastDay() {
+            var date = new Date().getMilliseconds();
+            var endDate = date - 86400000;
+            $.ajax({
+                type: 'GET',
+                url: '././cars'
+            }).done(function (data) {
+                var mas = JSON.parse(data);
+                var result = "";
+                for (var i = 0; i < mas.length; i++) {
+                    let date = new Date(mas[i].date);
+                    let dateAdded = new Date(mas[i].dayAdded);
+                    if (dateAdded > endDate) {
+                        result += "<tr>" +
+                            "<td>" + mas[i].id + "</td>" +
+                            "<td>" + mas[i].brand + "</td>" +
+                            "<td>" + mas[i].model + "</td>" +
+                            "<td>" + date + "</td>" +
+                            "<td>" + mas[i].engine.type + "</td>" +
+                            "<td><img src=\"\download?name=" + mas[i].photoName + "\" width='50' height='50'/></td>" +
+                            "<td>" + mas[i].actual + "</td>" +
+                            "<td>" + mas[i].user.role + "</td>" +
+                            "<td><a class=\"nav-link\" href=\"././edit?id=" + mas[i].id + "\" title=\"Edit ad for the sale of cars\">Edit ad</a></td>" +
+                            "<td>" + dateAdded + "</td>" +
+                            "</tr>";
+                    }
+                }
+                document.getElementById("bodyTable").innerHTML = result;
+            })
+        }
+    </script>
+    <script>
+        function showCars() {
+            if ($('#photos').is(':checked')) {
+                getCarsWithPhotos();
+            } else {
+                getCars();
+            }
+        }
+    </script>
 </head>
 <body>
 <a class="nav-link" href="././newcar.html" title="Add a new car">Create new car</a>
+<div class="container">
+    <h3>FILTERS</h3>
+    <ul>
+        <li>
+            <label>Show all cars for the last day</label>
+            <input type="checkbox" id="lastDay" name="lastDay" title="show all cars for the last day"
+                   onchange="showCarsByLastDay()">
+        </li>
+        <li>
+            <label>Show all cars with photos</label>
+            <input id="photos" type="checkbox" title="show all cars with photos" onchange="getCarsWithPhotos()">
+        </li>
+        <li>
+            <label>Show all cars of a certain brand</label>
+            <select id="brand" title="show all cars of a certain brand" onchange="getOneBrandCars()">
+                <option name="select" disabled>Choose a brand</option>
+            </select>
+        </li>
+    </ul>
+</div>
 <div class="container">
     <h2>CARS</h2>
     <table class="table table-condensed">
@@ -88,6 +225,7 @@
             <th>isActual</th>
             <th>Owner</th>
             <th>Change</th>
+            <th>The day the ad was added</th>
         </tr>
         </thead>
         <tbody id="bodyTable">

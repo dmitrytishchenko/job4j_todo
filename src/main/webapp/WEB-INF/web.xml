@@ -97,4 +97,20 @@
         <servlet-name>Get date Servlet</servlet-name>
         <url-pattern>/date</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>Get brand car</servlet-name>
+        <servlet-class>ru.job4j.service.BrandServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Get brand car</servlet-name>
+        <url-pattern>/brand</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>Availability Photos Servlet</servlet-name>
+        <servlet-class>ru.job4j.service.AvailabilityPhotosServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Availability Photos Servlet</servlet-name>
+        <url-pattern>/photo</url-pattern>
+    </servlet-mapping>
 </web-app>

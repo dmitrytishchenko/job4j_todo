@@ -60,10 +60,12 @@ public class CarsServlet extends HttpServlet {
             }
             for (FileItem item : items) {
                 if (!item.isFormField()) {
-                    File file = new File(folder + File.separator + item.getName());
-                    newFile = file;
-                    FileOutputStream out = new FileOutputStream(file);
-                    out.write(item.getInputStream().readAllBytes());
+                    if (!item.getName().equals("")) {
+                        File file = new File(folder + File.separator + item.getName());
+                        newFile = file;
+                        FileOutputStream out = new FileOutputStream(file);
+                        out.write(item.getInputStream().readAllBytes());
+                    }
                 } else {
                     fields.put(item.getFieldName(), item.getString());
                 }
@@ -92,10 +94,13 @@ public class CarsServlet extends HttpServlet {
         } else {
             car.setActual(false);
         }
-        car.setPhotoName(newFile.getName());
+        if (newFile != null) {
+            car.setPhotoName(newFile.getName());
+        }
         car.setEngine(engine);
         User user = (User) req.getSession().getAttribute("user");
         car.setUser(user);
+        car.setDayAdded(new Date());
         CarsStore store = CarsDAO.getInst();
         store.createCar(car);
         resp.sendRedirect(req.getContextPath() + "/index.html");

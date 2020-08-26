@@ -24,6 +24,7 @@ public class Car {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "USER_ID_FK"))
     private User user;
+    private Date dayAdded;
 
     public Car() {
     }
@@ -92,4 +93,11 @@ public class Car {
         this.date = date;
     }
 
+    public Date getDayAdded() {
+        return dayAdded;
+    }
+
+    public void setDayAdded(Date dayAdded) {
+        this.dayAdded = dayAdded;
+    }
 }

@@ -15,6 +15,10 @@ public interface CarsStore {
 
     List<Car> getAllCars();
 
+    List<Car> getCarsByBrand(String brandCar);
+
+    List<Car> getCarsWithPhotos();
+
     Car getCar(int id);
 
     void addUser(String name, String password, Task task);

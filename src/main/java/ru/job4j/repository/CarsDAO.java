@@ -1,6 +1,5 @@
 package ru.job4j.repository;
 
-
 import ru.job4j.model.Annotation.Car;
 import ru.job4j.model.Task;
 import ru.job4j.model.User;
@@ -50,6 +49,19 @@ public class CarsDAO implements CarsStore {
     @Override
     public List<Car> getAllCars() {
         List<Car> result = hb.tx(session -> session.createQuery("from ru.job4j.model.Annotation.Car").list());
+        return result;
+    }
+
+    @Override
+    public List getCarsByBrand(String brandCar) {
+        List result = hb.tx(session ->
+                session.createQuery("from Car c where c.brand = :fBrand").setParameter("fBrand", brandCar).list());
+        return result;
+    }
+
+    @Override
+    public List getCarsWithPhotos() {
+        List result = hb.tx(session -> session.createQuery("from Car c where c.photoName is not null ").list());
         return result;
     }
 
