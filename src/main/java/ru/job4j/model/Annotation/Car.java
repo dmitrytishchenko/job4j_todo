@@ -5,6 +5,8 @@ import ru.job4j.model.User;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "cars")
@@ -25,6 +27,12 @@ public class Car {
     @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "USER_ID_FK"))
     private User user;
     private Date dayAdded;
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = "history_owner", joinColumns = {
+            @JoinColumn(name = "driver_id", nullable = false, updatable = false) },
+            inverseJoinColumns = { @JoinColumn(name = "car_id",
+                    nullable = false, updatable = false) })
+    private Set<Driver> drivers;
 
     public Car() {
     }
@@ -99,5 +107,13 @@ public class Car {
 
     public void setDayAdded(Date dayAdded) {
         this.dayAdded = dayAdded;
+    }
+
+    public Set<Driver> getDrivers() {
+        return drivers;
+    }
+
+    public void setDrivers(Set<Driver> drivers) {
+        this.drivers = drivers;
     }
 }

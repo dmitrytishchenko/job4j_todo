@@ -12,10 +12,9 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
 public class CarsDAOTest {
-
+    final CarsStore store = CarsDAO.getInst();
     @Test
     public void addCar() {
-        CarsStore store = CarsDAO.getInst();
         Car car = new Car();
         car.setBrand("Mazda");
         car.setModel("626");
@@ -26,7 +25,7 @@ public class CarsDAOTest {
         driver.setName("Mark");
         Set<Driver> drivers = new HashSet<>();
         drivers.add(driver);
-//        car.setDrivers(drivers);
+        car.setDrivers(drivers);
         store.createCar(car);
         Set<Car> cars = new HashSet<>();
         cars.add(car);
@@ -36,8 +35,6 @@ public class CarsDAOTest {
 
     @Test
     public void updateCar() {
-        CarsStore store = CarsDAO.getInst();
-
         Car car = new Car();
         car.setBrand("Mazda");
         car.setModel("626");
@@ -48,14 +45,12 @@ public class CarsDAOTest {
         driver.setName("Mark");
         Set<Driver> drivers = new HashSet<>();
         drivers.add(driver);
-//        car.setDrivers(drivers);
+        car.setDrivers(drivers);
         store.createCar(car);
         Set<Car> cars = new HashSet<>();
         cars.add(car);
         driver.setCars(cars);
-
         Car newCar = store.getCar(store.getAllCars().get(0).getId());
-
         newCar.setBrand("Mercedes");
         newCar.setModel("GL");
         Engine newEngine = new Engine();
@@ -65,7 +60,6 @@ public class CarsDAOTest {
         newDriver.setName("Ben");
         Set<Driver> newDrivers = new HashSet<>();
         newDrivers.add(newDriver);
-//        newCar.setDrivers(newDrivers);
         store.updateCar(newCar);
         Set<Car> newCars = new HashSet<>();
         newCars.add(newCar);
@@ -75,7 +69,6 @@ public class CarsDAOTest {
 
     @Test
     public void deleteCar() {
-        CarsStore store = CarsDAO.getInst();
         Car car = new Car();
         car.setBrand("Mazda");
         car.setModel("626");
@@ -86,12 +79,11 @@ public class CarsDAOTest {
         driver.setName("Mark");
         Set<Driver> drivers = new HashSet<>();
         drivers.add(driver);
-//        car.setDrivers(drivers);
+        car.setDrivers(drivers);
         store.createCar(car);
         Set<Car> cars = new HashSet<>();
         cars.add(car);
         driver.setCars(cars);
-
         store.deleteCar(car);
         assertThat(store.getAllCars().size(), is(0));
     }
