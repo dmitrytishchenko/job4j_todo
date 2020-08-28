@@ -26,7 +26,7 @@ public class CarsDAOTest {
         driver.setName("Mark");
         Set<Driver> drivers = new HashSet<>();
         drivers.add(driver);
-        car.setDrivers(drivers);
+//        car.setDrivers(drivers);
         store.createCar(car);
         Set<Car> cars = new HashSet<>();
         cars.add(car);
@@ -48,7 +48,7 @@ public class CarsDAOTest {
         driver.setName("Mark");
         Set<Driver> drivers = new HashSet<>();
         drivers.add(driver);
-        car.setDrivers(drivers);
+//        car.setDrivers(drivers);
         store.createCar(car);
         Set<Car> cars = new HashSet<>();
         cars.add(car);
@@ -65,7 +65,7 @@ public class CarsDAOTest {
         newDriver.setName("Ben");
         Set<Driver> newDrivers = new HashSet<>();
         newDrivers.add(newDriver);
-        newCar.setDrivers(newDrivers);
+//        newCar.setDrivers(newDrivers);
         store.updateCar(newCar);
         Set<Car> newCars = new HashSet<>();
         newCars.add(newCar);
@@ -86,7 +86,7 @@ public class CarsDAOTest {
         driver.setName("Mark");
         Set<Driver> drivers = new HashSet<>();
         drivers.add(driver);
-        car.setDrivers(drivers);
+//        car.setDrivers(drivers);
         store.createCar(car);
         Set<Car> cars = new HashSet<>();
         cars.add(car);
