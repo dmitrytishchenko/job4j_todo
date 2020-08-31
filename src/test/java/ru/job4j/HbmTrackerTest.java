@@ -1,3 +1,5 @@
+package ru.job4j;
+
 import org.junit.Test;
 import ru.job4j.hqldb.HbmTracker;
 import ru.job4j.hqldb.Item;

@@ -3,7 +3,6 @@ package ru.job4j.repository;
 import ru.job4j.model.annotation.Car;
 import ru.job4j.model.Task;
 import ru.job4j.model.User;
-
 import java.util.List;
 
 public class CarsDAO implements CarsStore {

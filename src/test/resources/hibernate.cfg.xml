@@ -17,5 +17,11 @@
         <mapping class="ru.job4j.hqldb.City"/>
         <mapping class="ru.job4j.hqldb.Item"/>
 
+        <mapping class="ru.job4j.model.annotation.Car"/>
+        <mapping class="ru.job4j.model.annotation.Engine"/>
+        <mapping class="ru.job4j.model.annotation.Driver"/>
+        <mapping class="ru.job4j.model.User"/>
+        <mapping class="ru.job4j.model.Task"/>
+
     </session-factory>
 </hibernate-configuration>

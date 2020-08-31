@@ -1,3 +1,5 @@
+package ru.job4j;
+
 import org.junit.Test;
 import ru.job4j.model.annotation.Car;
 import ru.job4j.model.annotation.Driver;
@@ -12,10 +14,10 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
 public class CarsDAOTest {
-    private final CarsStore store = CarsDAO.getInst();
 
     @Test
     public void addCar() {
+        CarsStore store = CarsDAO.getInst();
         Car car = new Car();
         car.setBrand("Mazda");
         car.setModel("626");
@@ -36,6 +38,7 @@ public class CarsDAOTest {
 
     @Test
     public void updateCar() {
+        CarsStore store = CarsDAO.getInst();
         Car car = new Car();
         car.setBrand("Mazda");
         car.setModel("626");
@@ -70,6 +73,7 @@ public class CarsDAOTest {
 
     @Test
     public void deleteCar() {
+        CarsStore store = CarsDAO.getInst();
         Car car = new Car();
         car.setBrand("Mazda");
         car.setModel("626");
