@@ -9,8 +9,10 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import java.util.List;
 
 public class CityStore {
-    private final StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
-    private final SessionFactory sf = new MetadataSources(registry).buildMetadata().buildSessionFactory();
+    private final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
+            .configure().build();
+    private final SessionFactory sf = new MetadataSources(registry)
+            .buildMetadata().buildSessionFactory();
 
     public City create(City city) {
         Session session = sf.openSession();

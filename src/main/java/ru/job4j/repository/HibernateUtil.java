@@ -13,8 +13,10 @@ import java.util.List;
 import java.util.function.Function;
 
 public class HibernateUtil {
-    private final StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
-    private SessionFactory sf = new MetadataSources(registry).buildMetadata().buildSessionFactory();
+    private final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
+            .configure().build();
+    private SessionFactory sf = new MetadataSources(registry)
+            .buildMetadata().buildSessionFactory();
 
     public <T> void create(T model) {
         Session session = sf.openSession();

@@ -10,10 +10,11 @@ import java.util.List;
 
 public class HbmRun {
     public static void main(String[] args) {
-        final StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
-        final SessionFactory sf = new MetadataSources(registry).buildMetadata().buildSessionFactory();
+        final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
+                .configure().build();
+        final SessionFactory sf = new MetadataSources(registry)
+                .buildMetadata().buildSessionFactory();
         try {
-
             Role role = create(Role.of("ADMIN"), sf);
             create(Customer.of("Petr Arsentev", role), sf);
             for (Customer customer : findAll(Customer.class, sf)) {

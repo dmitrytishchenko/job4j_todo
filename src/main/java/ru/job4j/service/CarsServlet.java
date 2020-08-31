@@ -5,8 +5,8 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
-import ru.job4j.model.Annotation.Car;
-import ru.job4j.model.Annotation.Engine;
+import ru.job4j.model.annotation.Car;
+import ru.job4j.model.annotation.Engine;
 import ru.job4j.model.User;
 import ru.job4j.repository.CarsDAO;
 import ru.job4j.repository.CarsStore;
@@ -22,14 +22,13 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class CarsServlet extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req,
+                         HttpServletResponse resp) throws ServletException, IOException {
         List<String> images = new ArrayList<>();
         for (File file : new File("images").listFiles()) {
             images.add(file.getName());
@@ -44,7 +43,8 @@ public class CarsServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req,
+                          HttpServletResponse resp) throws ServletException, IOException {
         DiskFileItemFactory factory = new DiskFileItemFactory();
         ServletContext context = this.getServletConfig().getServletContext();
         File repository = (File) context.getAttribute("javax.servlet.context.tempdir");

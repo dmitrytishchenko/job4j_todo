@@ -10,7 +10,8 @@ import javax.persistence.Query;
 
 public class HbmRunCandidates {
     public static void main(String[] args) {
-        final StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
+        final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
+                .configure().build();
         try {
             SessionFactory sf = new MetadataSources(registry).buildMetadata().buildSessionFactory();
             Session session = sf.openSession();
@@ -30,15 +31,18 @@ public class HbmRunCandidates {
             }
             Query queryId = session.createQuery("from Candidate c where c.id = :fId")
                     .setParameter("fId", 2);
-            System.out.println(((org.hibernate.query.Query) queryId).uniqueResult() + " - Query by ID");
+            System.out.println(((org.hibernate.query.Query) queryId)
+                    .uniqueResult() + " - Query by ID");
             Query queryName = session.createQuery("from Candidate c where c.name = :fName")
                     .setParameter("fName", "Ben");
-            System.out.println(((org.hibernate.query.Query) queryName).uniqueResult() + " - Query by NAME");
+            System.out.println(((org.hibernate.query.Query) queryName)
+                    .uniqueResult() + " - Query by NAME");
             /**
              * Update
              */
             session.createQuery(
-                    "update Candidate c set c.name = :fNewName, c.salary = :fNewSalary where c.id = :fID").
+                    "update Candidate c set c.name = :fNewName,"
+                            + " c.salary = :fNewSalary where c.id = :fID").
                     setParameter("fNewName", "Lee").
                     setParameter("fNewSalary", 270).
                     setParameter("fID", 3).
@@ -46,13 +50,15 @@ public class HbmRunCandidates {
             /**
              * Insert
              */
-            session.createQuery("insert into Candidate (name, experience, salary)" +
-                    "select concat (c.name,'Frank'), c.experience, c.salary + 100 " +
-                    "from Candidate c where c.id = :fId").setParameter("fId", 3).executeUpdate();
+            session.createQuery("insert into Candidate (name, experience, salary)"
+                    + "select concat (c.name,'Frank'), c.experience, c.salary + 100 "
+                    + "from Candidate c where c.id = :fId").setParameter("fId", 3)
+                    .executeUpdate();
             /**
              * Delete
              */
-            session.createQuery("delete Candidate c where c.id = :fId").setParameter("fId", 4).executeUpdate();
+            session.createQuery("delete Candidate c where c.id = :fId")
+                    .setParameter("fId", 4).executeUpdate();
             session.getTransaction().commit();
             session.close();
         } catch (Exception e) {

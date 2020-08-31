@@ -1,7 +1,7 @@
 package ru.job4j.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import ru.job4j.model.Annotation.Car;
+import ru.job4j.model.annotation.Car;
 import ru.job4j.repository.CarsDAO;
 import ru.job4j.repository.CarsStore;
 
@@ -15,7 +15,8 @@ import java.util.List;
 
 public class AvailabilityPhotosServlet extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req,
+                         HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/plain");
         resp.setCharacterEncoding("UTF-8");
         CarsStore store = CarsDAO.getInst();

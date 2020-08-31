@@ -4,15 +4,16 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "j_customer")
+@Table
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
     @ManyToOne
-    @JoinColumn(name = "role_id")
+    @JoinColumn
     private Role role;
+
     public static Customer of(String name, Role role) {
         Customer customer = new Customer();
         customer.name = name;
@@ -46,12 +47,16 @@ public class Customer {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Customer customer = (Customer) o;
-        return id == customer.id &&
-                Objects.equals(name, customer.name) &&
-                Objects.equals(role, customer.role);
+        return id == customer.id
+                && Objects.equals(name, customer.name)
+                && Objects.equals(role, customer.role);
     }
 
     @Override

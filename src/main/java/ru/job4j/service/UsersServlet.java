@@ -13,7 +13,8 @@ import java.io.PrintWriter;
 
 public class UsersServlet extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req,
+                         HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/plain");
         resp.setCharacterEncoding("UTF-8");
         ObjectMapper mapper = new ObjectMapper();
@@ -21,9 +22,5 @@ public class UsersServlet extends HttpServlet {
         PrintWriter writer = new PrintWriter(resp.getOutputStream());
         writer.write(json);
         writer.flush();
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     }
 }

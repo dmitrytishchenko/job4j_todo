@@ -1,9 +1,9 @@
-package ru.job4j.repository;
-
 import org.junit.Test;
-import ru.job4j.model.Annotation.Car;
-import ru.job4j.model.Annotation.Driver;
-import ru.job4j.model.Annotation.Engine;
+import ru.job4j.model.annotation.Car;
+import ru.job4j.model.annotation.Driver;
+import ru.job4j.model.annotation.Engine;
+import ru.job4j.repository.CarsDAO;
+import ru.job4j.repository.CarsStore;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -12,7 +12,8 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
 public class CarsDAOTest {
-    final CarsStore store = CarsDAO.getInst();
+    private final CarsStore store = CarsDAO.getInst();
+
     @Test
     public void addCar() {
         Car car = new Car();

@@ -15,8 +15,10 @@ import java.util.Date;
 
 public class TaskServlet extends HttpServlet {
 private final CarsStore store = CarsDAO.getInst();
+
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req,
+                         HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/plain");
         resp.setCharacterEncoding("UTF-8");
         ObjectMapper mapper = new ObjectMapper();
@@ -27,7 +29,8 @@ private final CarsStore store = CarsDAO.getInst();
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req,
+                          HttpServletResponse resp) throws ServletException, IOException {
         String desc = req.getParameter("desc");
         Task task = new Task(desc, new Date(), false);
         store.saveTask(task);

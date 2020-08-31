@@ -9,9 +9,11 @@ import org.hibernate.query.Query;
 
 public class HbmRun {
     public static void main(String[] args) {
-        final StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
+        final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
+                .configure().build();
         try {
-            SessionFactory sf = new MetadataSources(registry).buildMetadata().buildSessionFactory();
+            SessionFactory sf = new MetadataSources(registry).buildMetadata()
+                    .buildSessionFactory();
             Session session = sf.openSession();
             session.beginTransaction();
             Student one = Student.of("Alexey", 15, "NY");
@@ -44,7 +46,8 @@ public class HbmRun {
             query4.setParameter("newAge", 56);
             query4.setParameter("newCity", "LA");
             query4.setParameter("fId", 2);
-            session.createQuery("update Student s set s.age = :newAge, s.city = :newCity where s.id = :fId")
+            session.createQuery("update Student s set s.age = :newAge,"
+                    + " s.city = :newCity where s.id = :fId")
                     .setParameter("newAge", 22)
                     .setParameter("newCity", "London")
                     .setParameter("fId", 1)
@@ -55,9 +58,9 @@ public class HbmRun {
             System.out.println(query5.uniqueResult() + " update student where id = 1");
             session.createQuery("delete from Student where id = :fId").
                     setParameter("fId", 1).executeUpdate();
-            session.createQuery("insert into Student (name, age, city)" +
-                    "select  concat(s.name, 'new'), s.age + 5, s.city " +
-                    "from Student s where s.id = :fId").setParameter("fId", 3).executeUpdate();
+            session.createQuery("insert into Student (name, age, city)"
+                    + "select  concat(s.name, 'new'), s.age + 5, s.city "
+                    + "from Student s where s.id = :fId").setParameter("fId", 3).executeUpdate();
             session.getTransaction().commit();
             session.close();
         } catch (Exception e) {

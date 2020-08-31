@@ -1,4 +1,4 @@
-package ru.job4j.model.Annotation;
+package ru.job4j.model.annotation;
 
 import javax.persistence.*;
 

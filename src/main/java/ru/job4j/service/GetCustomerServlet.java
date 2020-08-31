@@ -12,7 +12,8 @@ import java.io.PrintWriter;
 
 public class GetCustomerServlet extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req,
+                         HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/plain");
         resp.setCharacterEncoding("UTF-8");
         ObjectMapper mapper = new ObjectMapper();

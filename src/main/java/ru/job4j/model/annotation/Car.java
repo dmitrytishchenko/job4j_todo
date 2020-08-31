@@ -1,11 +1,9 @@
-package ru.job4j.model.Annotation;
+package ru.job4j.model.annotation;
 
 import ru.job4j.model.User;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.Set;
 
 @Entity

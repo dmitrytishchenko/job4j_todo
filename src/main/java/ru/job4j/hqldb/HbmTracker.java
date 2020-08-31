@@ -10,8 +10,10 @@ import javax.persistence.Query;
 import java.util.List;
 
 public class HbmTracker {
-    private final StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
-    private final SessionFactory sf = new MetadataSources(registry).buildMetadata().buildSessionFactory();
+    private final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
+            .configure().build();
+    private final SessionFactory sf = new MetadataSources(registry)
+            .buildMetadata().buildSessionFactory();
 
     public Item create(Item item) {
         Session session = sf.openSession();
@@ -25,7 +27,8 @@ public class HbmTracker {
     public void delete(int id) {
         Session session = sf.openSession();
         session.beginTransaction();
-        session.createQuery("delete Item i where i.id = :fId").setParameter("fId", id).executeUpdate();
+        session.createQuery("delete Item i where i.id = :fId")
+                .setParameter("fId", id).executeUpdate();
         session.getTransaction().commit();
         session.close();
     }
@@ -34,7 +37,8 @@ public class HbmTracker {
         Session session = sf.openSession();
         session.beginTransaction();
         Item result = null;
-        Query query = session.createQuery("from Item i where i.id = :fId").setParameter("fId", id);
+        Query query = session.createQuery("from Item i where i.id = :fId")
+                .setParameter("fId", id);
         result = (Item) ((org.hibernate.query.Query) query).uniqueResult();
         session.getTransaction().commit();
         session.close();

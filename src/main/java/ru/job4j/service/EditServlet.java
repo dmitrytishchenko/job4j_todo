@@ -1,6 +1,6 @@
 package ru.job4j.service;
 
-import ru.job4j.model.Annotation.Car;
+import ru.job4j.model.annotation.Car;
 import ru.job4j.model.User;
 import ru.job4j.repository.CarsDAO;
 import ru.job4j.repository.CarsStore;
@@ -14,7 +14,8 @@ import java.io.PrintWriter;
 
 public class EditServlet extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req,
+                         HttpServletResponse resp) throws ServletException, IOException {
         String id = req.getParameter("id");
         CarsStore store = CarsDAO.getInst();
         Car car = store.getCar(Integer.valueOf(id));

@@ -1,12 +1,13 @@
 package ru.job4j.repository;
 
-import ru.job4j.model.Annotation.Car;
+import ru.job4j.model.annotation.Car;
 import ru.job4j.model.Task;
 import ru.job4j.model.User;
 
 import java.util.List;
 
 public interface CarsStore {
+
     void createCar(Car car);
 
     void updateCar(Car car);

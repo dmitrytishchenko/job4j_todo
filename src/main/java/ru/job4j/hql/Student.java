@@ -55,13 +55,17 @@ public class Student {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Student student = (Student) o;
-        return id == student.id &&
-                age == student.age &&
-                Objects.equals(name, student.name) &&
-                Objects.equals(city, student.city);
+        return id == student.id
+                && age == student.age
+                && Objects.equals(name, student.name)
+                && Objects.equals(city, student.city);
     }
 
     @Override
@@ -71,11 +75,11 @@ public class Student {
 
     @Override
     public String toString() {
-        return "Student{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", age=" + age +
-                ", city='" + city + '\'' +
-                '}';
+        return "Student{"
+                + "id=" + id
+                + ", name='" + name + '\''
+                + ", age=" + age
+                + ", city='" + city + '\''
+                + '}';
     }
 }
