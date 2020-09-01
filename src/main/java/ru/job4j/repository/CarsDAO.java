@@ -13,7 +13,7 @@ public class CarsDAO implements CarsStore {
     }
 
     private final static class Lazy {
-        private final static CarsStore INST = new CarsDAO();
+        private static final  CarsStore INST = new CarsDAO();
     }
 
     public static CarsStore getInst() {
