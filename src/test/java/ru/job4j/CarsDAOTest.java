@@ -14,10 +14,10 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
 public class CarsDAOTest {
+    private final CarsStore store = CarsDAO.getInst();
 
     @Test
     public void addCar() {
-        CarsStore store = CarsDAO.getInst();
         Car car = new Car();
         car.setBrand("Mazda");
         car.setModel("626");
@@ -29,16 +29,15 @@ public class CarsDAOTest {
         Set<Driver> drivers = new HashSet<>();
         drivers.add(driver);
         car.setDrivers(drivers);
-        store.createCar(car);
         Set<Car> cars = new HashSet<>();
         cars.add(car);
         driver.setCars(cars);
-        assertThat(store.getAllCars().get(0).getBrand(), is("Mazda"));
+        store.createCar(car);
+        assertThat(store.getAllCars().get(1).getBrand(), is("Mazda"));
     }
 
     @Test
     public void updateCar() {
-        CarsStore store = CarsDAO.getInst();
         Car car = new Car();
         car.setBrand("Mazda");
         car.setModel("626");
@@ -50,10 +49,10 @@ public class CarsDAOTest {
         Set<Driver> drivers = new HashSet<>();
         drivers.add(driver);
         car.setDrivers(drivers);
-        store.createCar(car);
         Set<Car> cars = new HashSet<>();
         cars.add(car);
         driver.setCars(cars);
+        store.createCar(car);
         Car newCar = store.getCar(store.getAllCars().get(0).getId());
         newCar.setBrand("Mercedes");
         newCar.setModel("GL");
@@ -64,16 +63,15 @@ public class CarsDAOTest {
         newDriver.setName("Ben");
         Set<Driver> newDrivers = new HashSet<>();
         newDrivers.add(newDriver);
-        store.updateCar(newCar);
         Set<Car> newCars = new HashSet<>();
         newCars.add(newCar);
         newDriver.setCars(newCars);
+        store.updateCar(newCar);
         assertThat(store.getAllCars().get(0).getBrand(), is("Mercedes"));
     }
 
     @Test
     public void deleteCar() {
-        CarsStore store = CarsDAO.getInst();
         Car car = new Car();
         car.setBrand("Mazda");
         car.setModel("626");
@@ -85,11 +83,11 @@ public class CarsDAOTest {
         Set<Driver> drivers = new HashSet<>();
         drivers.add(driver);
         car.setDrivers(drivers);
-        store.createCar(car);
         Set<Car> cars = new HashSet<>();
         cars.add(car);
         driver.setCars(cars);
+        store.createCar(car);
         store.deleteCar(car);
-        assertThat(store.getAllCars().size(), is(0));
+        assertThat(store.getAllCars().size(), is(2));
     }
 }
