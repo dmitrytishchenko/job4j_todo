@@ -1,54 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <style type="text/css">
-        body {
-            background-color: aliceblue;
-            margin-left: 5%;
-            margin-right: 5%;
-            padding: 20px 20px 20px 20px;
-        }
-    </style>
     <meta charset="UTF-8">
-    <title>The application TODO list</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="login.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <title>Authorization</title>
-</head>
-<body>
-<h2>Authorization User</h2>
-<a class="nav-link" href="././registration.html" title="Регистрация нового пользователя">Registration</a>
-<form class="form-horizontal" action="auth" method="post">
-    <div class="form-group">
-        <label class="control-label col-sm-2" for="name">UserName:</label>
-        <div class="col-sm-10">
-            <input type="name" class="form-control" id="name" name="name" placeholder="Enter UserName">
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="control-label col-sm-2" for="password">Password:</label>
-        <div class="col-sm-10">
-            <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password">
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
-            <button type="submit" class="btn btn-default">Submit</button>
-        </div>
-    </div>
-</form>
-<form class="form-horizontal" action="auth" method="post">
-    <div class="form-group">
-        <label class="control-label col-sm-2" for="name">Log in as a guest</label>
-    </div>
+    <style>
+        body {
+            background-color: beige;
+            margin: 20px;
+        }
 
-    <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
-            <button type="submit" class="btn btn-default">Guest</button>
+        header {
+            border-style: ridge;
+            border-color: aquamarine;
+            border-radius: 10px;
+            margin: 20px;
+            padding: 10px;
+            text-align: center;
+            background-color: #b3ffe3;
+        }
+
+        #reg {
+            background-color: indianred;
+            float: right;
+        }
+
+        #auth {
+            border-style: outset;
+            border-radius: 10px;
+            border-color: indianred;
+            background-color: bisque;
+            margin: 80px;
+            padding: 20px;
+        }
+
+        #guest {
+            border-style: groove;
+            border-radius: 5px;
+            border-color: dimgray;
+            background-color: burlywood;
+            padding: 10px;
+            margin: 0px 100px 0px 100px;
+        }
+
+        button, #but1, #but2 {
+            background-color: cornflowerblue;
+            border-style: groove;
+            border-color: crimson;
+            border-width: 2px;
+        }
+
+        footer {
+            font-size: small;
+            margin: 30px 50px 0px 100px;
+
+        }
+    </style>
+</head>
+<div>
+    <header>
+        <h2>Authorization User</h2>
+    </header>
+</div>
+<div id="reg">
+    <button>
+        <a class="nav-link" href="././registration.html" title="Регистрация нового пользователя">Registration</a>
+    </button>
+</div>
+<div id="auth">
+    <form class="form-horizontal" action="auth" method="post">
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="name">UserName:</label>
+            <div class="col-sm-10">
+                <input type="name" class="form-control" id="name" name="name" placeholder="Enter UserName">
+            </div>
         </div>
-    </div>
-</form>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="password">Password:</label>
+            <div class="col-sm-10">
+                <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button id="but1" type="submit" class="btn btn-default">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>
+<div id="guest">
+    <form class="form-horizontal" action="auth" method="post">
+        <label>Log in as a guest</label>
+        <button id="but2" type="submit" class="btn btn-default">Guest</button>
+    </form>
+</div>
+<footer>
+    <label>*User registration page</label>
+</footer>
 </body>
 </html>

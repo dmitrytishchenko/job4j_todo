@@ -1,0 +1,30 @@
+body {
+    background-color: #b3ffe3;
+    margin: 20px;
+}
+
+header {
+    border-style: groove;
+    border-color: crimson;
+    border-radius: 10px;
+    border-width: 2px;
+    text-align: center;
+    margin: 10px;
+    background-color: bisque;
+}
+
+#add {
+    margin: 50px;
+    border-style: outset;
+    border-color: dimgray;
+    background-color: beige;
+    padding: 20px;
+}
+
+#fuel, #checkbox, #ph, button {
+    margin: 0px 200px 0px 200px;
+}
+
+#but3 {
+    background-color: crimson;
+}

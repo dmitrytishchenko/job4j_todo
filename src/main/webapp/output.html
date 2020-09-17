@@ -5,24 +5,21 @@
     <title>Output</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="output.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <style type="text/css">
-        body {
-            background-color: red;
-            margin-left: 5%;
-            margin-right: 5%;
-            padding: 20px 20px 20px 20px;
-        }
-    </style>
 </head>
 <body>
-<h2>You are sure?</h2>
-<form action="out" method="post">
-    <button type="submit" class="btn btn-primary">YES</button>
-</form>
-<form action="auth" method="post">
-    <button type="submit" class="btn btn-primary">NO</button>
-</form>
+<header>
+    <h2>You are sure?</h2>
+</header>
+<div id="out">
+    <form action="out" method="post">
+        <button type="submit" class="btn btn-primary">YES</button>
+    </form>
+    <form action="auth" method="post">
+        <button type="submit" class="btn btn-primary">NO</button>
+    </form>
+</div>
 </body>
 </html>

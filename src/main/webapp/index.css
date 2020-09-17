@@ -1,0 +1,114 @@
+body {
+    /**
+    цвет подложки страницы
+     */
+    background-color: azure;
+    /**
+    размер отступа между содержимым и границей
+     */
+    padding: 5px;
+    /**
+    размер ширины поля
+     */
+    margin: 10px;
+    /**
+    стиль шрифта
+     */
+    font-family: sans-serif;
+    /**
+    текст жирный
+     */
+    font-weight: bolder;
+    /**
+    размер текста
+     */
+    font-size: small;
+    /**
+    высота строки текста
+     */
+    line-height: 1.6em;
+}
+header {
+    /**
+    стиль рамки
+     */
+    border-style: ridge;
+    /**
+    толщина рамки
+     */
+    border-width: 5px;
+    /**
+    цвет рамки
+     */
+    border-color: white;
+    background-color: darkturquoise;
+    /**
+    радиус рамки
+     */
+    border-radius: 20px;
+    padding: 5px;
+    margin: 1px 0px 0px 0px;
+}
+#logo {
+    position: static;
+    top: 10px;
+    left: 10px;
+}
+#logoText {
+    text-align: center;
+    font-size: 40px;
+    margin: 5px;
+}
+
+#newCar {
+    /**
+    расположение справа
+     */
+    float: right;
+    color: crimson;
+    width: 380px;
+    border-style: dotted;
+    border-color: crimson;
+    border-radius: 5px;
+
+}
+#filters {
+    background-color: antiquewhite;
+    width: 380px;
+    line-height: 1em;
+    text-align: center;
+    border-style: outset;
+    border-color: yellow;
+    border-radius: 5px;
+    }
+ul {
+    text-align: left;
+}
+a:visited {
+    color: red;
+}
+a:link {
+    color: green;
+}
+a:hover {
+    color: yellow;
+}
+
+#theadTable, tr, th {
+    border-style: ridge;
+    border-color: darkblue;
+    text-align: center;
+    border-width: 4px;
+    background-color: bisque;
+}
+#bodyTable, td {
+    border-style: solid;
+    border-color: dimgray;
+    text-align: center;
+    border-width: 2px;
+}
+footer {
+    width: 210px;
+    border-style: solid;
+    border-color: bisque;
+}

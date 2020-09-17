@@ -1,0 +1,50 @@
+body {
+    background-color: beige;
+    margin: 20px;
+}
+
+header {
+    border-style: ridge;
+    border-color: aquamarine;
+    border-radius: 10px;
+    margin: 20px;
+    padding: 10px;
+    text-align: center;
+    background-color: #b3ffe3;
+}
+
+#reg {
+    background-color: indianred;
+    float: right;
+}
+
+#auth {
+    border-style: outset;
+    border-radius: 10px;
+    border-color: indianred;
+    background-color: bisque;
+    margin: 80px;
+    padding: 20px;
+}
+
+#guest {
+    border-style: groove;
+    border-radius: 5px;
+    border-color: dimgray;
+    background-color: burlywood;
+    padding: 10px;
+    margin: 0px 100px 0px 100px;
+}
+
+button, #but1, #but2 {
+    background-color: cornflowerblue;
+    border-style: groove;
+    border-color: crimson;
+    border-width: 2px;
+}
+
+footer {
+    font-size: small;
+    margin: 30px 50px 0px 100px;
+
+}

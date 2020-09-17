@@ -5,16 +5,9 @@
     <title>The application TODO list</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="index.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <style type="text/css">
-        body {
-            background-color: aquamarine;
-            margin-left: 5%;
-            margin-right: 5%;
-            padding: 20px 20px 20px 20px;
-        }
-    </style>
     <script>
         $(document).ready(function () {
             getCustomer();
@@ -190,8 +183,23 @@
     </script>
 </head>
 <body>
-<a class="nav-link" href="././newcar.html" title="Add a new car">Create new car</a>
-<div class="container">
+<div id="logo">
+    <a href=""><img src="images/logo.png" alt="Auto logo" width="100"></a>
+</div>
+<header id="header">
+    <p id="logoText">CAR SALES PLATFORM</p>
+</header>
+<div class="form-group" name="today">
+    <label id="today">Today is:</label>
+    <div name="customer">
+        <label>The customer is:</label>
+    </div>
+</div>
+<div id="newCar">
+    <a class="nav-link" href="././newcar.html">
+        <img src="images/add.png" width="200">Add new car</a>
+</div>
+<div id="filters">
     <h3>FILTERS</h3>
     <ul>
         <li>
@@ -212,9 +220,9 @@
     </ul>
 </div>
 <div class="container">
-    <h2>CARS</h2>
+    <h3>CARS</h3>
     <table class="table table-condensed">
-        <thead>
+        <thead id="theadTable">
         <tr>
             <th>ID</th>
             <th>Brand</th>
@@ -232,12 +240,9 @@
         </tbody>
     </table>
 </div>
-<a href="././output.html">Output</a>
-<div class="form-group">
-    <label id="customer">The customer is:</label>
-</div>
-<div class="form-group">
-    <label id="today">Today is:</label>
-</div>
+<footer id="footer">
+    <a href="././output.html"><img src="images/out.jpg" width="200">Exit this
+        service</a>
+</footer>
 </body>
 </html>

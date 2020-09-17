@@ -1,0 +1,29 @@
+body {
+    background-color: azure;
+    margin: 20px;
+}
+
+header {
+    border-style: groove;
+    border-color: indianred;
+    border-radius: 10px;
+    border-width: 2px;
+    text-align: center;
+    margin: 10px;
+    background-color: bisque;
+}
+
+#out {
+    margin: 50px;
+    border-style: outset;
+    border-color: dimgray;
+    background-color: beige;
+    padding: 20px;
+}
+
+button {
+    margin: 20px;
+    border-style: groove;
+    border-width: 2px;
+    border-color: crimson;
+}

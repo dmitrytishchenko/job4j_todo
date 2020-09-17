@@ -1,0 +1,23 @@
+body {
+    background-color: beige;
+    margin: 20px;
+}
+
+header {
+    border-style: ridge;
+    border-color: aquamarine;
+    border-radius: 10px;
+    margin: 20px;
+    padding: 10px;
+    text-align: center;
+    background-color: #b3ffe3;
+}
+
+#reg {
+    border-style: groove;
+    border-color: crimson;
+    border-width: 2px;
+    background-color: blanchedalmond;
+    margin: 50px;
+    padding: 30px;
+}
